@@ -1,1 +1,101 @@
+ gcc -g p2final.c 
+ ./a.out 
+enter the coordinated of 3 points:
+1 1
+2 2
+3 3
+The points (1.000000, 1.000000), (2.000000,2.000000) and (3.000000,3.000000) do not form a triangle
+ ./a.out 
+enter the coordinated of 3 points:
+1 4
+7 6 
+3 0
+The points (1.000000, 4.000000), (7.000000,6.000000) and (3.000000,0.000000) form a triangle
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8f6: file p2final.c, line 37.
+(gdb) r
+Starting program: /home/runner/Test2Session2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p2final.c:37
+37  {
+(gdb) n
+39      input_triangle(&x1, &y1, &x2, &y2, &x3, &y3);
+(gdb) s
+input_triangle (x1=0x7ffd8936e9ec, y1=0x7ffd8936e9f0, x2=0x7ffd8936e9f4, 
+    y2=0x7ffd8936e9f8, x3=0x7ffd8936e9fc, y3=0x7ffd8936ea00) at p2final.c:13
+13      printf("enter the coordinated of 3 points:\n");
+(gdb) n
+enter the coordinated of 3 points:
+14      scanf("%f%f%f%f%f%f", x1, y1, x2, y2, x3, y3);
+(gdb) n
+2 2
+3 5
+0 0
+15  }
+(gdb) n
+main () at p2final.c:40
+40      int res = is_triangle(x1, y1, x2, y2, x3, y3);
+(gdb) i lo
+x1 = 2
+y1 = 2
+x2 = 3
+y2 = 5
+x3 = 0
+y3 = 0
+res = 32765
+(gdb) s
+is_triangle (x1=2, y1=2, x2=3, y2=5, x3=0, y3=0) at p2final.c:24
+24      float area = 0.5 * (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2));
+(gdb) n
+25      return fabs(area) > 0;
+(gdb) p area
+$1 = 2
+(gdb) p area > 0
+$2 = 1
+(gdb) p fabs(area) > 0
+No symbol "fabs" in current context.
+(gdb) n
+26  }
+(gdb) n
+main () at p2final.c:41
+41      output(x1, y1, x2, y2, x3, y3, res);
+(gdb) i lo
+x1 = 2
+y1 = 2
+x2 = 3
+y2 = 5
+x3 = 0
+y3 = 0
+res = 1
+(gdb) s
+output (x1=2, y1=2, x2=3, y2=5, x3=0, y3=0, istriangle=1) at p2final.c:30
+30      if (istriangle)
+(gdb) n
+31          printf("The points (%f, %f), (%f,%f) and (%f,%f) form a triangle\n", x1, y1, x2, y2, x3, y3);
+(gdb) n
+The points (2.000000, 2.000000), (3.000000,5.000000) and (0.000000,0.000000) form a triangle
+34  }
+(gdb) n
+main () at p2final.c:42
+42      return 0;
+(gdb) c
+Continuing.
+[Inferior 1 (process 1965) exited normally]
+(gdb) 

@@ -1,1 +1,88 @@
+ gcc -g p1final.c -lm
+ ./a.out 
+Enter the two points:
+2 2    
+1 1
+The distance b/w (2.000000,2.000000) and (1.000000, 1.000000) is 1.414214
+ ^C
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8e3: file p1final.c, line 31.
+(gdb) r
+Starting program: /home/runner/Test2Session2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p1final.c:31
+31  {
+(gdb) n
+33      input(&x1, &y1, &x2, &y2);
+(gdb) i lo
+x1 = 3.09224532e-41
+y1 = 4.17282081e-07
+x2 = 3.09224532e-41
+y2 = -5.76862558e+37
+dist = 4.59135442e-41
+(gdb) s
+input (x1=0x7ffdfe2d96e4, y1=0x7ffdfe2d96e8, x2=0x7ffdfe2d96ec, 
+    y2=0x7ffdfe2d96f0) at p1final.c:16
+16      printf("Enter the two points:\n");
+(gdb) n
+Enter the two points:
+17      scanf("%f%f%f%f", x1, y1, x2, y2);
+(gdb) n
+2 2 1 1
+18  }
+(gdb) i lo
+No locals.
+(gdb) n
+main () at p1final.c:34
+34      dist = find_distance(x1, y1, x2, y2);
+(gdb) i lo
+x1 = 2
+y1 = 2
+x2 = 1
+y2 = 1
+dist = 4.59135442e-41
+(gdb) s
+find_distance (x1=2, y1=2, x2=1, y2=1) at p1final.c:22
+22      return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+(gdb) n
+23  }
+(gdb) n
+main () at p1final.c:35
+35      output(x1, y1, x2, y2, dist);
+(gdb) i lo
+x1 = 2
+y1 = 2
+x2 = 1
+y2 = 1
+dist = 1.41421354
+(gdb) s
+output (x1=2, y1=2, x2=1, y2=1, distance=1.41421354) at p1final.c:27
+27      printf("The distance b/w (%f,%f) and (%f, %f) is %f\n", x1, y1, x2, y2, distance);
+(gdb) n
+The distance b/w (2.000000,2.000000) and (1.000000, 1.000000) is 1.414214
+28  }
+(gdb) n
+main () at p1final.c:36
+36      return 0;
+(gdb) c
+Continuing.
+[Inferior 1 (process 661) exited normally]
+(gdb) Quit
+(gdb) 
