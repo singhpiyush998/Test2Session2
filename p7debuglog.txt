@@ -1,1 +1,64 @@
+ gcc -g p7final.c -lm
+ ./a.out 
+Enter the first point:
+4 4
+Enter the second point:
+2 2
+The length of line with endpoints (4.000000,4.000000) and (2.000000,2.000000) is 2.828427
+ gdb a.out 
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x977: file p7final.c, line 60.
+(gdb) r
+Starting program: /home/runner/Test2Session2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p7final.c:60
+60  {
+(gdb) n
+61      Line l = input_line();
+(gdb) 
+Enter the first point:
+2 2
+Enter the second point:
+3 3
+62      find_length(&l);
+(gdb) i lo
+l = {p1 = {x = 2, y = 2}, p2 = {x = 3, y = 3}, distance = 1.40129846e-45}
+(gdb) s
+find_length (l=0x7ffe650b64f0) at p7final.c:51
+51      l->distance = sqrt((l->p1.x - l->p2.x) * (l->p1.x - l->p2.x) + (l->p1.y - l->p2.y) * (l->p1.y - l->p2.y));
+(gdb) n
+52  }
+(gdb) n
+main () at p7final.c:63
+63      output(l);
+(gdb) i lo
+l = {p1 = {x = 2, y = 2}, p2 = {x = 3, y = 3}, distance = 1.41421354}
+(gdb) s
+output (l=...) at p7final.c:56
+56      printf("The length of line with endpoints (%f,%f) and (%f,%f) is %f\n", l.p1.x, l.p1.y, l.p2.x, l.p2.y, l.distance);
+(gdb) n
+The length of line with endpoints (2.000000,2.000000) and (3.000000,3.000000) is 1.414214
+57  }
+(gdb) n
+main () at p7final.c:64
+64      return 0;
+(gdb) c
+Continuing.
+[Inferior 1 (process 1081) exited normally]
+(gdb) 

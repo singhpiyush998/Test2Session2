@@ -1,1 +1,324 @@
+gcc -g p8final.c -lm
+ ./a.out 
+Enter the sides of a polygon: 4
+Line number 1
+Enter the first point:
+0 0
+Enter the second point:
+1 0
+Line number 2
+Enter the first point:
+1 0
+Enter the second point:
+1 1
+Line number 3
+Enter the first point:
+1 1
+Enter the second point:
+0 1
+Line number 4
+Enter the first point:
+0 0
+Enter the second point:
+0 1
+The perimeter of given polygon is: 4.00
+ gdb a.out 
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0xb74: file p8final.c, line 117.
+(gdb) r
+Starting program: /home/runner/Test2Session2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p8final.c:117
+117 {
+(gdb) n
+119     input_polygon(&p);
+(gdb) s
+input_polygon (p=0x7ffe5fb75a10) at p8final.c:83
+83      p->sides = input_n();
+(gdb) n
+Enter the sides of a polygon: 4
+84      input_n_lines(p->sides, p->l);
+(gdb) n
+Line number 1
+Enter the first point:
+0 0
+Enter the second point:
+0 1
+Line number 2
+Enter the first point:
+0 1
+Enter the second point:
+1 1
+Line number 3
+Enter the first point:
+1 1
+Enter the second point:
+1 0
+Line number 4
+Enter the first point:
+1 0
+Enter the second point:
+0 0
+85  }
+(gdb) n
+main () at p8final.c:120
+120     find_perimeter(&p);
+(gdb) i l
+Ambiguous info command "l": line, locals.
+(gdb) i lo
+p = {sides = 4, l = {{p1 = {x = 0, y = 0}, p2 = {x = 0, y = 1}, 
+      distance = 1.53397782e+21}, {p1 = {x = 0, y = 1}, p2 = {x = 1, y = 1}, 
+      distance = 1.53397782e+21}, {p1 = {x = 1, y = 1}, p2 = {x = 1, y = 0}, 
+      distance = 1.53397782e+21}, {p1 = {x = 1, y = 0}, p2 = {x = 0, y = 0}, 
+      distance = 1.53397782e+21}, {p1 = {x = 0, y = 2.79322504e-39}, p2 = {
+        x = 0, y = 2.79322504e-39}, distance = 0}, {p1 = {x = 2.93873588e-39, 
+        y = 0}, p2 = {x = 1.40129846e-45, y = 8.40779079e-45}, 
+      distance = 2.79742894e-39}, {p1 = {x = 0, y = 5.73616482e-39}, p2 = {
+        x = 0, y = 5.73616482e-39}, distance = 0}, {p1 = {x = 2.95169509e-41, 
+        y = 0}, p2 = {x = 5.33726559e-41, y = 0}, distance = 2.93873588e-39}, {
+      p1 = {x = 0, y = 2.80259693e-45}, p2 = {x = 8.40779079e-45, 
+        y = 2.81658749e-39}, distance = 0}, {p1 = {x = 5.75532337e-39, y = 0}, 
+      p2 = {x = 5.75532337e-39, y = 0}, distance = 6.72623263e-43}, {p1 = {
+        x = 0, y = 6.72623263e-43}, p2 = {x = 0, y = 1.12103877e-44}, 
+      distance = 0}, {p1 = {x = 5.60519386e-45, y = 5.60519386e-45}, p2 = {
+        x = 8.74410242e-43, y = 0}, distance = 8.74410242e-43}, {p1 = {x = 0, 
+        y = 8.74410242e-43}, p2 = {x = 0, y = 9.52882956e-44}, distance = 0}, {
+      p1 = {x = 9.52882956e-44, y = 0}, p2 = {x = 5.60519386e-45, y = 0}, 
+      distance = 9.80908925e-45}, {p1 = {x = 5.60519386e-45, 
+        y = 2.79742894e-39}, p2 = {x = 0, y = 5.73616482e-39}, distance = 0}, {
+      p1 = {x = 5.73616482e-39, y = 0}, p2 = {x = 2.24207754e-44, y = 0}, 
+      distance = 2.01786979e-43}, {p1 = {x = 0, y = 1.12103877e-44}, p2 = {
+        x = 0, y = 1.8070117e+22}, distance = 5.60519386e-45}, {p1 = {
+---Type <return> to continue, or q <return> to quit---q
+x = 2.6426Quit
+(gdb) s
+find_perimeter (p=0x7ffe5fb75a10) at p8final.c:103
+103     find_n_lengths(p->sides, p->l);
+(gdb) n
+104     p->perimeter = 0;
+(gdb) n
+105     for (int i = 0; i < p->sides; i++)
+(gdb) n
+107         p->perimeter += p->l[i].distance;
+(gdb) n
+105     for (int i = 0; i < p->sides; i++)
+(gdb) 
+107         p->perimeter += p->l[i].distance;
+(gdb) 
+105     for (int i = 0; i < p->sides; i++)
+(gdb) 
+107         p->perimeter += p->l[i].distance;
+(gdb) 
+105     for (int i = 0; i < p->sides; i++)
+(gdb) 
+107         p->perimeter += p->l[i].distance;
+(gdb) 
+105     for (int i = 0; i < p->sides; i++)
+(gdb) 
+109 }
+(gdb) 
+main () at p8final.c:121
+121     output(p);
+(gdb) i lo
+p = {sides = 4, l = {{p1 = {x = 0, y = 0}, p2 = {x = 0, y = 1}, distance = 1}, 
+    {p1 = {x = 0, y = 1}, p2 = {x = 1, y = 1}, distance = 1}, {p1 = {x = 1, 
+        y = 1}, p2 = {x = 1, y = 0}, distance = 1}, {p1 = {x = 1, y = 0}, 
+      p2 = {x = 0, y = 0}, distance = 1}, {p1 = {x = 0, y = 2.79322504e-39}, 
+      p2 = {x = 0, y = 2.79322504e-39}, distance = 0}, {p1 = {
+        x = 2.93873588e-39, y = 0}, p2 = {x = 1.40129846e-45, 
+        y = 8.40779079e-45}, distance = 2.79742894e-39}, {p1 = {x = 0, 
+        y = 5.73616482e-39}, p2 = {x = 0, y = 5.73616482e-39}, distance = 0}, {
+      p1 = {x = 2.95169509e-41, y = 0}, p2 = {x = 5.33726559e-41, y = 0}, 
+      distance = 2.93873588e-39}, {p1 = {x = 0, y = 2.80259693e-45}, p2 = {
+        x = 8.40779079e-45, y = 2.81658749e-39}, distance = 0}, {p1 = {
+        x = 5.75532337e-39, y = 0}, p2 = {x = 5.75532337e-39, y = 0}, 
+      distance = 6.72623263e-43}, {p1 = {x = 0, y = 6.72623263e-43}, p2 = {
+        x = 0, y = 1.12103877e-44}, distance = 0}, {p1 = {x = 5.60519386e-45, 
+        y = 5.60519386e-45}, p2 = {x = 8.74410242e-43, y = 0}, 
+      distance = 8.74410242e-43}, {p1 = {x = 0, y = 8.74410242e-43}, p2 = {
+        x = 0, y = 9.52882956e-44}, distance = 0}, {p1 = {x = 9.52882956e-44, 
+        y = 0}, p2 = {x = 5.60519386e-45, y = 0}, distance = 9.80908925e-45}, {
+      p1 = {x = 5.60519386e-45, y = 2.79742894e-39}, p2 = {x = 0, 
+        y = 5.73616482e-39}, distance = 0}, {p1 = {x = 5.73616482e-39, y = 0}, 
+      p2 = {x = 2.24207754e-44, y = 0}, distance = 2.01786979e-43}, {p1 = {
+        x = 0, y = 1.12103877e-44}, p2 = {x = 0, y = 1.8070117e+22}, 
+      distance = 5.60519386e-45}, {p1 = {x = 2.64267708e+19, 
+---Type <return> to continue, or q <return> to quit---
+        y = 4.59149455e-41}, p2 = {x = 2.64269819e+19, y = 4.59149455e-41}, 
+      distance = 9.29750129e+20}, {p1 = {x = 4.56192715e-41, 
+        y = 6.47497859e+20}, p2 = {x = 4.56192715e-41, y = 1.53415797e+21}, 
+      distance = 4.56192715e-41}, {p1 = {x = 2.64254338e+19, 
+        y = 4.59149455e-41}, p2 = {x = 1.22457406e+21, y = 4.56192715e-41}, 
+      distance = 0}, {p1 = {x = 0, y = 1.23241159e+21}, p2 = {
+        x = 4.56192715e-41, y = 0}, distance = 0}, {p1 = {x = 2.64267004e+19, 
+        y = 4.59149455e-41}, p2 = {x = 1.22456702e+21, y = 4.56192715e-41}, 
+      distance = 2.64267708e+19}, {p1 = {x = 4.59149455e-41, y = 0}, p2 = {
+        x = 0, y = 1.23241159e+21}, distance = 4.56192715e-41}, {p1 = {
+        x = 2.64267004e+19, y = 4.59149455e-41}, p2 = {x = 2.64247916e+19, 
+        y = 4.59149455e-41}, distance = 0}, {p1 = {x = 0, y = -1}, p2 = {
+        x = -nan(0x7cbf6e), y = 9.29750129e+20}, distance = 4.56192715e-41}, {
+      p1 = {x = 1.23016654e+21, y = 4.56192715e-41}, p2 = {x = 9.18368975e-41, 
+        y = 1.40129846e-45}, distance = 2.64254338e+19}, {p1 = {
+        x = 4.59149455e-41, y = 2.64249412e+19}, p2 = {x = 4.59149455e-41, 
+        y = 0}, distance = 0}, {p1 = {x = 1.40129846e-45, y = 0}, p2 = {
+        x = 1.53434825e+21, y = 4.56192715e-41}, distance = 2.80259693e-45}, {
+      p1 = {x = 0, y = 1.40129846e-45}, p2 = {x = 2.80259693e-45, 
+        y = -2.28881836e-05}, distance = -nan(0x7cbf6e)}, {p1 = {
+        x = 1.2227114e+21, y = 4.56192715e-41}, p2 = {x = 1.53652236e+21, 
+        y = 4.56192715e-41}, distance = -9.07244449e-29}, {p1 = {
+        x = 1.28819981e-38, y = 8.08179832e-39}, p2 = {x = 1.5909477e+29, 
+---Type <return> to continue, or q <return> to quit---
+        y = 2.67530706e+19}, distance = 4.59149455e-41}, {p1 = {
+        x = 2.8275665e-37, y = 0}, p2 = {x = 7.66716726e+20, 
+        y = 4.56192715e-41}, distance = 2.64261726e+19}, {p1 = {
+        x = 4.59149455e-41, y = 2.67522614e+19}, p2 = {x = 4.59149455e-41, 
+        y = 2.80259693e-45}, distance = 4.56192715e-41}, {p1 = {
+        x = 1.22645459e+21, y = 4.56192715e-41}, p2 = {x = 2.64258208e+19, 
+        y = 4.59149455e-41}, distance = 1.5363197e+21}, {p1 = {
+        x = 4.56192715e-41, y = 0}, p2 = {x = 0, y = 1.2227114e+21}, 
+      distance = 4.56192715e-41}, {p1 = {x = 1.53415797e+21, 
+        y = 4.56192715e-41}, p2 = {x = 0, y = 0}, distance = 1.40129846e-45}, {
+      p1 = {x = 0, y = 6.45812809e+20}, p2 = {x = 4.56192715e-41, 
+        y = 5.80377523e-38}, distance = 0}, {p1 = {x = 1.21664758e+21, 
+        y = 4.56192715e-41}, p2 = {x = 1.21649432e+21, y = 4.56192715e-41}, 
+      distance = 6.412121e+20}, {p1 = {x = 4.56192715e-41, 
+        y = 4.06376555e-44}, p2 = {x = 4.56192715e-41, y = 0}, 
+      distance = 4.56192715e-41}, {p1 = {x = 2.64260671e+19, 
+        y = 4.59149455e-41}, p2 = {x = 4.20389539e-45, y = 4.56192715e-41}, 
+      distance = 2.64260319e+19}, {p1 = {x = 4.59149455e-41, y = 0}, p2 = {
+        x = 4.59149455e-41, y = 1.5343505e+21}, distance = 4.56192715e-41}, {
+      p1 = {x = 0, y = 0}, p2 = {x = 5.60519386e-45, y = 0}, 
+      distance = 1.53415797e+21}, {p1 = {x = 4.56192715e-41, 
+        y = 7.66716726e+20}, p2 = {x = 4.56192715e-41, y = 1.2070511e+24}, 
+      distance = 0}, {p1 = {x = 1.53644017e+21, y = 4.56192715e-41}, p2 = {
+---Type <return> to continue, or q <return> to quit---
+        x = 2.64267004e+19, y = 4.59149455e-41}, distance = 1.53456442e+21}, {
+      p1 = {x = 4.56192715e-41, y = 1.53604948e+21}, p2 = {x = 4.56192715e-41, 
+        y = 0}, distance = 0}, {p1 = {x = 1.22280372e+21, y = 4.56192715e-41}, 
+      p2 = {x = 2.80259693e-45, y = 0}, distance = 1.53456442e+21}, {p1 = {
+        x = 4.56192715e-41, y = 1.40129846e-45}, p2 = {x = 0, y = 0}, 
+      distance = 0}, {p1 = {x = 1.40129846e-45, y = 0}, p2 = {
+        x = 1.53604948e+21, y = 4.56192715e-41}, distance = 1.21664758e+21}, {
+      p1 = {x = 4.56192715e-41, y = 0.0147705078}, p2 = {x = 1.40129846e-45, 
+        y = 2.64260319e+19}, distance = 4.59149455e-41}, {p1 = {
+        x = 2.64260671e+19, y = 4.59149455e-41}, p2 = {x = 1.53644017e+21, 
+        y = 4.56192715e-41}, distance = 0}, {p1 = {x = 0, y = 2.64269819e+19}, 
+      p2 = {x = 4.59149455e-41, y = 6.50242099e+20}, 
+      distance = 4.56192715e-41}, {p1 = {x = -nan(0x7fffff), y = 0}, p2 = {
+        x = 6.40736126e+20, y = 4.56192715e-41}, distance = 6.42193604e+20}, {
+      p1 = {x = 4.56192715e-41, y = 1.53415797e+21}, p2 = {x = 4.56192715e-41, 
+        y = 0}, distance = 0}, {p1 = {x = 0, y = 0}, p2 = {x = 0, y = 0}, 
+      distance = 2.67524901e+19}, {p1 = {x = 4.59149455e-41, y = 0}, p2 = {
+        x = 4.48415509e-44, y = 0}, distance = 0}, {p1 = {x = 0, y = 0}, p2 = {
+        x = 1.21685123e+21, y = 4.56192715e-41}, distance = 2.64269819e+19}, {
+      p1 = {x = 4.59149455e-41, y = 9.80908925e-45}, p2 = {x = 0, 
+        y = 1.21649432e+21}, distance = 4.56192715e-41}, {p1 = {
+        x = 1.53604948e+21, y = 4.56192715e-41}, p2 = {x = 9.80908925e-45, 
+        y = 1.12103877e-44}, distance = 1.22370585e+21}, {p1 = {
+---Type <return> to continue, or q <return> to quit---
+        x = 4.56192715e-41, y = 1.40129846e-45}, p2 = {x = 0, 
+        y = 1.22374413e+21}, distance = 4.56192715e-41}, {p1 = {
+        x = 1.53604948e+21, y = 4.56192715e-41}, p2 = {x = 1.53415346e+21, 
+        y = 4.56192715e-41}, distance = 2.64265948e+19}, {p1 = {
+        x = 4.59149455e-41, y = 0}, p2 = {x = 0, y = 2.64268763e+19}, 
+      distance = 4.59149455e-41}, {p1 = {x = 0, y = 0}, p2 = {x = 0, y = 0}, 
+      distance = 0}, {p1 = {x = 0, y = 1.21658214e+21}, p2 = {
+        x = 4.56192715e-41, y = 1.53644017e+21}, distance = 4.56192715e-41}, {
+      p1 = {x = 2.64268763e+19, y = 4.59149455e-41}, p2 = {x = 1.21633219e+21, 
+        y = 4.56192715e-41}, distance = 1.21665926e+21}, {p1 = {
+        x = 4.56192715e-41, y = 1.2164673e+21}, p2 = {x = 4.56192715e-41, 
+        y = 1.53570158e+21}, distance = 4.56192715e-41}, {p1 = {x = 0, y = 0}, 
+      p2 = {x = 0, y = 0}, distance = 1.53604948e+21}, {p1 = {
+        x = 4.56192715e-41, y = 6.42193604e+20}, p2 = {x = 4.56192715e-41, 
+        y = 1.72191555e-41}, distance = 0}, {p1 = {x = 1.21669248e+21, 
+        y = 4.56192715e-41}, p2 = {x = 1.61429583e-42, y = 0}, 
+      distance = 5.46506401e-44}, {p1 = {x = 0, y = 0}, p2 = {x = 0, y = 0}, 
+      distance = 0}, {p1 = {x = 0, y = 0}, p2 = {x = 0, y = 0}, distance = 0}, 
+    {p1 = {x = 0, y = 2.64280726e+19}, p2 = {x = 4.59149455e-41, 
+        y = 12945.2676}, distance = 2.00021343e-41}, {p1 = {x = 0, y = 0}, 
+      p2 = {x = 1.5363197e+21, y = 4.56192715e-41}, distance = 1.5363197e+21}, 
+    {p1 = {x = 4.56192715e-41, y = 1.2306435e+21}, p2 = {x = 4.56192715e-41, 
+        y = 2.64280726e+19}, distance = 4.59149455e-41}, {p1 = {
+---Type <return> to continue, or q <return> to quit---
+        x = 1.21881691e+21, y = 4.56192715e-41}, p2 = {x = 0, y = 0}, 
+      distance = 0}, {p1 = {x = 0, y = 1.40129846e-45}, p2 = {x = 0, 
+        y = 1.53652574e+21}, distance = 4.56192715e-41}, {p1 = {
+        x = 1.53630393e+21, y = 4.56192715e-41}, p2 = {x = 1.40129846e-45, 
+        y = 0}, distance = 1.51808237e+21}, {p1 = {x = 4.56192715e-41, 
+        y = 1.2227114e+21}, p2 = {x = 4.56192715e-41, y = 1.53652236e+21}, 
+      distance = 4.56192715e-41}, {p1 = {x = 0, y = 0}, p2 = {x = 0, y = 0}, 
+      distance = 2.67530706e+19}, {p1 = {x = 4.59149455e-41, 
+        y = 5.49330522e-38}, p2 = {x = 0, y = 7.66242933e+20}, 
+      distance = 4.56192715e-41}, {p1 = {x = 2.64282485e+19, 
+        y = 4.59149455e-41}, p2 = {x = 2.67522614e+19, y = 4.59149455e-41}, 
+      distance = 2.80259693e-45}, {p1 = {x = 4.56192715e-41, y = 0}, p2 = {
+        x = 0, y = 2.64278967e+19}, distance = 4.59149455e-41}, {p1 = {
+        x = 4.20389539e-45, y = 0}, p2 = {x = 2.64278615e+19, 
+        y = 4.59149455e-41}, distance = 0}, {p1 = {x = 0, y = 1.53652799e+21}, 
+      p2 = {x = 4.56192715e-41, y = 0}, distance = 0}, {p1 = {
+        x = 1.40129846e-45, y = 0}, p2 = {x = 1.53652236e+21, 
+        y = 4.56192715e-41}, distance = 0}, {p1 = {x = 0, y = 6.69065119e+22}, 
+      p2 = {x = 0, y = 1.53664958e+21}, distance = 4.56192715e-41}, {p1 = {
+        x = 2.64282309e+19, y = 4.59149455e-41}, p2 = {x = 2.64283541e+19, 
+        y = 4.59149455e-41}, distance = 1.53652236e+21}, {p1 = {
+        x = 4.56192715e-41, y = 0}, p2 = {x = 0, y = 1.22280372e+21}, 
+      distance = 4.56192715e-41}, {p1 = {x = 0, y = 0}, p2 = {
+---Type <return> to continue, or q <return> to quit---
+        x = 2.64283541e+19, y = 4.59149455e-41}, distance = 0}, {p1 = {x = 0, 
+        y = 0}, p2 = {x = 0, y = 0}, distance = 0}, {p1 = {x = 1.53652236e+21, 
+        y = 4.56192715e-41}, p2 = {x = 7.66242933e+20, y = 4.56192715e-41}, 
+      distance = 1.16588032e-42}, {p1 = {x = 0, y = 2.64278615e+19}, p2 = {
+        x = 4.59149455e-41, y = 2.64278967e+19}, distance = 4.59149455e-41}, {
+      p1 = {x = 1.53664958e+21, y = 4.56192715e-41}, p2 = {x = 0, y = 0}, 
+      distance = 0}, {p1 = {x = 0, y = 0}, p2 = {x = 0, y = -nan(0x7fffff)}, 
+      distance = 0}, {p1 = {x = 0, y = 0}, p2 = {x = 2.67529651e+19, 
+        y = 4.59149455e-41}, distance = 1.53652236e+21}, {p1 = {
+        x = 4.56192715e-41, y = 0}, p2 = {x = 0, y = 0}, distance = 0}, {p1 = {
+        x = 0, y = 0}, p2 = {x = 2, y = 0}, distance = 1.26116862e-44}, {p1 = {
+        x = 0, y = 1.21771479e+21}, p2 = {x = 4.56192715e-41, 
+        y = 2.64282661e+19}, distance = 4.59149455e-41}, {p1 = {
+        x = 1.40129846e-45, y = 0}, p2 = {x = 1.40129846e-45, y = 0}, 
+      distance = 2.64508962e+23}, {p1 = {x = 3.06870351e-41, 
+        y = 1.22596088e+21}, p2 = {x = 4.56192715e-41, y = 0}, distance = 0}, {
+      p1 = {x = 2.64507575e+23, y = 3.06870351e-41}, p2 = {x = 2.6448394e+23, 
+        y = 3.06870351e-41}, distance = 2.64287059e+19}}, perimeter = 4}
+(gdb) 
+(gdb) 
+(gdb) l
+116 int main()
+117 {
+118     Polygon p;
+119     input_polygon(&p);
+120     find_perimeter(&p);
+121     output(p);
+122     return 0;
+123 }
+(gdb) s
+output (p=...) at p8final.c:113
+113     printf("The perimeter of given polygon is: %.2f\n", p.perimeter);
+(gdb) n
+The perimeter of given polygon is: 4.00
+114 }
+(gdb) n
+main () at p8final.c:122
+122     return 0;
+(gdb) c
+Continuing.
+[Inferior 1 (process 101) exited normally]
+(gdb) 
