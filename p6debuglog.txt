@@ -1,1 +1,155 @@
+~/Test2Session2$ gcc -g p6final.c 
+~/Test2Session2$ ./a.out 
+Enter two string within 255 characters each:
+helloworldhello
+world
+The index of world in helloworldhello is 5
+~/Test2Session2$ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x85c: file p6final.c, line 59.
+(gdb) r
+Starting program: /home/runner/Test2Session2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p6final.c:59
+59      char* str = malloc(256 * sizeof(char));
+(gdb) n
+60      char* substr = malloc(256 * sizeof(char));
+(gdb) 
+61      input_string(str, substr);
+(gdb) i lo
+str = 0x5584d6253260 ""
+substr = 0x5584d6253370 ""
+index = 21892
+(gdb) s
+input_string (a=0x5584d6253260 "", b=0x5584d6253370 "")
+    at p6final.c:17
+17      printf("Enter two string within 255 characters each:\n");
+(gdb) n
+Enter two string within 255 characters each:
+18      scanf("%255s%255s", a, b);
+(gdb) n
+helloworldhello
+hello
+19  }
+(gdb) n
+main () at p6final.c:62
+62      int index = subStrPosn(str, substr);
+(gdb) i lo
+str = 0x5584d6253260 "helloworldhello"
+substr = 0x5584d6253370 "hello"
+index = 21892
+(gdb) s
+subStrPosn (string=0x5584d6253260 "helloworldhello", 
+    substring=0x5584d6253370 "hello") at p6final.c:28
+28      int substr_index = 0;
+(gdb) n
+29      int str_index = 0;
+(gdb) 
+30      while (*substring && *string)
+(gdb) 
+32          if (*string == *substring)
+(gdb) 
+34              substring++;
+(gdb) 
+35              substr_index++;
+(gdb) 
+42          string++;
+(gdb) 
+43          str_index++;
+(gdb) 
+30      while (*substring && *string)
+(gdb) 
+32          if (*string == *substring)
+(gdb) 
+34              substring++;
+(gdb) n
+35              substr_index++;
+(gdb) 
+42          string++;
+(gdb) 
+43          str_index++;
+(gdb) 
+30      while (*substring && *string)
+(gdb) 
+32          if (*string == *substring)
+(gdb) 
+34              substring++;
+(gdb) 
+35              substr_index++;
+(gdb) 
+42          string++;
+(gdb) 
+43          str_index++;
+(gdb) 
+30      while (*substring && *string)
+(gdb) p *substring
+$1 = 108 'l'
+(gdb) n
+32          if (*string == *substring)
+(gdb) 
+34              substring++;
+(gdb) 
+35              substr_index++;
+(gdb) 
+42          string++;
+(gdb) 
+43          str_index++;
+(gdb) 
+30      while (*substring && *string)
+(gdb) 
+32          if (*string == *substring)
+(gdb) 
+34              substring++;
+(gdb) 
+35              substr_index++;
+(gdb) 
+42          string++;
+(gdb) 
+43          str_index++;
+(gdb) 
+30      while (*substring && *string)
+(gdb) 
+45      if (substr_index) return str_index - substr_index;
+(gdb) 
+47  }
+(gdb) n
+main () at p6final.c:63
+63      output(str, substr, index);
+(gdb) p index
+$2 = 0
+(gdb) i lo
+str = 0x5584d6253260 "helloworldhello"
+substr = 0x5584d6253370 "hello"
+index = 0
+(gdb) s
+output (string=0x5584d6253260 "helloworldhello", 
+    substring=0x5584d6253370 "hello", index=0) at p6final.c:51
+51      if (index >= 0)
+(gdb) n
+52          printf("The index of %s in %s is %d\n", substring, string, index);
+(gdb) 
+The index of hello in helloworldhello is 0
+55  }
+(gdb) n
+main () at p6final.c:64
+64      return 0;
+(gdb) c
+Continuing.
+[Inferior 1 (process 32) exited normally]
+(gdb) 
